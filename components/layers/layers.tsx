@@ -6,6 +6,7 @@ import { useImageStore } from "@/lib/image-store"
 import { cn } from "@/lib/utils"
 import { Button } from "../ui/button"
 import { Layers2 } from "lucide-react"
+import LayerImage from "./layer-image"
 
 export default function Layers(){
     const layers = useLayerStore((state) => state.layers)
@@ -37,6 +38,7 @@ export default function Layers(){
                                     {!layer.url ? (
                                         <p className="text-xs font-medium justify-self-end">New Layer</p>
                                     ) : null}
+                                    <LayerImage layer={layer}/>
                                 </div>
                             </div>
                         </div>

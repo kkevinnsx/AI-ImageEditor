@@ -2,17 +2,36 @@ import React from 'react'
 import { StoreApi, useStore } from 'zustand'
 import { createStore } from 'zustand/vanilla'
 import { persist, createJSONStorage } from 'zustand/middleware'
-import { createZustandContext } from './zustand-context'
+
+const createZustandContext = <TInitial, TStore extends StoreApi<any>>(
+    getStore: (initial: TInitial) => TStore) => {
+        const Context = React.createContext(null as any as TStore)
+
+        const Provider = (props: {
+            children?: React.ReactNode
+            initialValue: TInitial
+        }) => {
+            const [store] = React.useState(getStore(props.initialValue))
+
+            return <Context.Provider value={store}>{props.children}</Context.Provider>
+        }
+
+            return {
+                useContext: () => React.useContext(Context),
+                Context,
+                Provider,
+            }        
+    }
 
 export type Layer = {
     publicId?: string
-    width?: number 
+    width?: number
     height?: number
     url?: string
-    id?: string 
+    id: string
     name?: string
-    format?: string 
-    poster?: string 
+    format?: string
+    poster?: string
     resourceType?: string
     transcriptionURL?: string
 }
@@ -21,6 +40,7 @@ type State = {
     layers: Layer[]
     addLayer: (layer: Layer) => void
     removeLayer: (id: string) => void
+    setActiveLayer: (id: string) => void
     activeLayer: Layer
     updateLayer: (layer: Layer) => void
     setPoster: (id: string, posterUrl: string) => void
