@@ -21,7 +21,7 @@ export default function Layers(){
             className="basis-[320px] shrink-0 scrollbar-thin scrollbar-track-secondary
             overflow-y-scroll scrollbar-thumb-primary scrollbar-thumb-rounded-full
             scrollbar-track-rounded-full overflow-x-hidden relative flex flex-col shadow-2x1">
-                <CardHeader className="">
+                <CardHeader className="sticky top-0 z-50 px-4 py-6 min-h-24 bg-card shadow-sm">
                     <div>
                         <CardTitle className="text-sm">
                             {activeLayer.name || 'Layers'}

@@ -46,6 +46,7 @@ export default function LayerInfo({layer, layerIndex}: {layer: Layer, layerIndex
                     onClick={(e) => {
                     e.stopPropagation();
                     setActiveLayer(layerIndex === 0 ? layers[1].id : layers[0].id)
+                    removeLayer(layer.id)
                 }}>
                     <span>Delete Layer</span>
 
