@@ -11,6 +11,7 @@ import { useMemo, useState } from "react"
 import { bgRemoval } from "@/server/bg-remove"
 import { AnimatePresence, motion} from 'framer-motion'
 import { genFill } from "@/server/gen-fill"
+import { Slider } from "../ui/slider"
 
 
 export default function GenerativeFill(){
@@ -136,24 +137,23 @@ export default function GenerativeFill(){
                 <div className="flex gap-2 items-center justify-center">
                     <div className="text-center">
                         <Label htmlFor="MaxWidth">Modify Width</Label>
-                        <Input
-                            name="width"
-                            type="range"
+                        <Slider
+                            value={[width]} 
                             max={activeLayer.width}
-                            value={width}
-                            onChange={(e) => setWidth(parseInt(e.target.value))}
+                            min={-activeLayer.width! + 100}
+                            step={1}
+                            onValueChange={(value) => setWidth(value[0])}
                             className="h-8"
                         />
                     </div>
                     <div className="text-center">
                         <Label htmlFor="MaxHeight">Modify Height</Label>
-                        <Input
-                            name="height"
-                            type="range"
+                        <Slider
+                            value={[height]} 
                             max={activeLayer.height}
                             min={-activeLayer.height! + 100}
-                            value={height}
-                            onChange={(e) => setHeight(parseInt(e.target.value))}
+                            step={1}
+                            onValueChange={(value) => setHeight(value[0])}
                             className="h-8"
                         />
                     </div>

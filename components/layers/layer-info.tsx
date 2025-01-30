@@ -13,7 +13,7 @@ import { Button } from '../ui/button'
 import { Ellipsis, Trash } from 'lucide-react'
 import { Layer, useLayerStore } from '@/lib/layer-store'
 
-export default function LayerInfo({layer, layerIndex}: {layer: Layer, layerIndex: number}) {
+export default function LayerInfo({layer, layerIndex,}: {layer: Layer, layerIndex: number}) {
     const layers         = useLayerStore((state) => state.layers);
     const setActiveLayer = useLayerStore((state) => state.setActiveLayer);
     const removeLayer    = useLayerStore((state) => state.removeLayer);
@@ -26,9 +26,9 @@ export default function LayerInfo({layer, layerIndex}: {layer: Layer, layerIndex
                 </Button>
             </DialogTrigger>
             <DialogContent>
-                <h3 className='text-lg font-medium text-center mb-2'>
+                <DialogTitle className='text-lg font-medium text-center mb-2'>
                     Layer {layer.id}
-                </h3>
+                </DialogTitle>
 
                 <div className='py-4 space-y-0.5'>
                     <p>

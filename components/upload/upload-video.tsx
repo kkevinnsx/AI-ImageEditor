@@ -6,7 +6,8 @@ import { Card, CardContent } from "../ui/card"
 import { cn } from "@/lib/utils"
 import { useImageStore } from "@/lib/image-store"
 import { useLayerStore } from "@/lib/layer-store"
-import Lottie from "lottie-react"
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import videoAnimation from '@/public/animations/video-upload.json'
 import { uploadVideo } from "@/server/upload-video"
 
