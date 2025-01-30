@@ -1,6 +1,5 @@
 "use client"
 
-import { uploadImage } from "@/server/upload-image"
 import { useDropzone } from "react-dropzone"
 import { Card, CardContent } from "../ui/card"
 import { cn } from "@/lib/utils"

@@ -1,11 +1,11 @@
 import React from 'react'
 import { StoreApi, useStore } from 'zustand'
 import { createStore } from 'zustand/vanilla'
-import { persist, createJSONStorage } from 'zustand/middleware'
+import { persist } from 'zustand/middleware'
 
 const createZustandContext = <TInitial, TStore extends StoreApi<any>>(
     getStore: (initial: TInitial) => TStore) => {
-        const Context = React.createContext(null as any as TStore)
+        const Context = React.createContext<StoreApi<State>>(null as any as StoreApi<State>); 
 
         const Provider = (props: {
             children?: React.ReactNode

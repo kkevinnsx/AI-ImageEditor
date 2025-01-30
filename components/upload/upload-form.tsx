@@ -25,7 +25,7 @@ export default function UploadForm(){
                     <Card 
                         className={cn("flex flex-col items-center justify-center py-4 px-6 gap-4 cursor-pointer",
                         selectedType === "image" ? "border-primary" : null)}
-                        onClick={(e) => setSelectedType('image')}
+                        onClick={() => setSelectedType('image')}
                     >
                         <CardContent className="flex items-center space-x-2 p-0">
                             <RadioGroupItem value="image" id="image-mode" hidden />
@@ -42,7 +42,7 @@ export default function UploadForm(){
                     <Card 
                         className={cn("flex flex-col items-center justify-center py-4 px-6 gap-4 cursor-pointer",
                         selectedType === "video" ? "border-primary" : null)}
-                        onClick={(e) => setSelectedType('video')}
+                        onClick={() => setSelectedType('video')}
                     >
                         <CardContent className="flex items-center space-x-2 p-0">
                             <RadioGroupItem value="video" id="video-mode" hidden />

@@ -1,9 +1,9 @@
 import React from "react"
 import { StoreApi } from "zustand"
 
-export const createZustandContext = <TInicial, TStore extends StoreApi<any>>(
+export const createZustandContext = <TInicial, TStore extends StoreApi<unknown>>(
     getStore: (initial: TInicial ) => TStore ) => {
-        const Context = React.createContext(null as any as TStore)
+        const Context = React.createContext(null as unknown as TStore)
 
         const Provider = (props: {
             children?: React.ReactNode
