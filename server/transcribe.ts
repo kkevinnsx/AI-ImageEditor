@@ -58,8 +58,8 @@ export const initiateTranscription = actionClient
                 raw_convert: "google_speech",
             })
 
-            const maxAttempts = 30
-            const delay = 2000
+            const maxAttempts = 100
+            const delay = 1000
             let status = "pending"
 
             for (let attempt = 0; attempt < maxAttempts; attempt++) {

@@ -57,8 +57,8 @@ export const bgReplace = actionClient
             : `${parts[0]}/upload/e_gen_background_replace/${parts[1]}`
 
         let isProcessed = false;
-        const maxAttempts = 60;
-        const delay = 2000;
+        const maxAttempts = 100;
+        const delay = 1000;
 
         for (let attempt = 0; attempt < maxAttempts; attempt++) {
             isProcessed = await checkImageProcessing(bgReplaceUrl);

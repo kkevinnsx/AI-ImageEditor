@@ -22,8 +22,8 @@ export const genCrop = actionClient.schema(genFillSchema)
     const parts = activeVideo.split('/upload/')
     const fillUrl = `${parts[0]}/upload/ar_${aspect},c_fill,g_auto,h_${height}/${parts[1]}` 
     let isProcessed = false
-    const maxAttempts = 30
-    const delay = 2000
+    const maxAttempts = 100
+    const delay = 1000
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
         isProcessed = await checkImageProcessing(fillUrl)
         if(isProcessed) {

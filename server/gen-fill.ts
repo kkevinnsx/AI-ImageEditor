@@ -58,8 +58,8 @@ export const genFill = actionClient
         console.log('Generated Background Removal URL:', fillUrl);
 
         let isProcessed = false;
-        const maxAttempts = 60;
-        const delay = 2000;
+        const maxAttempts = 100;
+        const delay = 1000;
 
         for (let attempt = 0; attempt < maxAttempts; attempt++) {
             isProcessed = await checkImageProcessing(fillUrl);
