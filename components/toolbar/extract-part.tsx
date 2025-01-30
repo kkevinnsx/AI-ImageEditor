@@ -98,12 +98,16 @@ export default function ExtractPart(){
                     </div>
                 </div>
 
-                <Button 
+                <Button
                     disabled={!activeLayer?.url || generating}
                     onClick={async () => {
                         const newLayerId = crypto.randomUUID();
+                        if (prompts.some((p) => p.trim() === "")) {
+                            alert("Please provide a prompt for extraction.");
+                            return;
+                        }
                         setGenerating(true);
-                        
+                    
                         try {
                             const res = await extractPart({
                                 prompts: prompts.filter((p) => p.trim() !== ""),

@@ -12,33 +12,33 @@ export default function ExportAsset({resource}: {resource: string}){
     const activeLayer = useLayerStore((state) => state.activeLayer)
     const [selected, setSelected] = useState("original")
     const handleDownload = async () => {
-        if(activeLayer.publicId){
-            try{
+        if (activeLayer.publicId) {
+            try {
                 const res = await fetch(`/api/download?publicId=${activeLayer.publicId}&quality=${selected}&resource_type=${activeLayer.resourceType}&format=${activeLayer.format}&url=${activeLayer.url}`)
-                if(!res.ok){
-                    throw new Error('Failed to export')
+                if (!res.ok) {
+                    throw new Error('Failed to export');
                 }
                 const data = await res.json();
-                if(data.error){
-                    throw new Error(data.error)
+                if (data.error) {
+                    throw new Error(data.error);
                 }
-                const imageResponse = await fetch(data.url)
-                    if(!imageResponse.ok){
-                        throw new Error ( 'Failed to Fetch' )
-                    }
+                const imageResponse = await fetch(data.url);
+                if (!imageResponse.ok) {
+                    throw new Error('Failed to Fetch');
+                }
                 const imageBlob = await imageResponse.blob();
                 const downloadUrl = URL.createObjectURL(imageBlob);
                 const link = document.createElement('a');
-                link.href = downloadUrl
-                link.download = data.filename
-                link.click()
-                document.body.removeChild(link)
-                URL.revokeObjectURL(downloadUrl )
-            } catch(error) {
-                console.log("Download Failed")
+                link.href = downloadUrl;
+                link.download = data.filename;
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(downloadUrl);
+            } catch (error) {
+                console.log("Download Failed: ", error);
             }
         }
-    }
+    }    
 
     return (
         <Dialog>

@@ -62,21 +62,20 @@ export default function GenerativeFill(){
     }
 
     const previewStyle = useMemo(() => {
-        if(!activeLayer.width || !activeLayer.height) return {}
-        const newWidth  = activeLayer.width + width
-        const newHeight = activeLayer.height + height
-        const scale = Math.min(PREVIEW_SIZE / newWidth, PREVIEW_SIZE / newHeight)
+        if (!activeLayer.width || !activeLayer.height) return {};
+        const newWidth = activeLayer.width + width;
+        const newHeight = activeLayer.height + height;
+        if (newWidth <= 0 || newHeight <= 0) return {};  
+        const scale = Math.min(PREVIEW_SIZE / newWidth, PREVIEW_SIZE / newHeight);
         
-        return{
+        return {
             width: `${newWidth * scale}px`,
             height: `${newHeight * scale}px`,
             backgroundImage: `url(${activeLayer.url})`,
             backgroundSize: `${activeLayer.width * scale}px ${activeLayer.height * scale}px`,
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            position: 'relative' as const,
-        }
-    }, [activeLayer, width, height])
+        };
+    }, [activeLayer.width, activeLayer.height, width, height]);
+    
 
     const previewOverlayStyle = useMemo(() => {
         if(!activeLayer.width || !activeLayer.height) return{}
