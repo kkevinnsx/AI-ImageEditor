@@ -3,14 +3,13 @@
 import {
     Dialog, 
     DialogContent,
-    DialogDescription,
-    DialogHeader,
+
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog'
 
 import { Button } from '../ui/button'
-import { Ellipsis, Trash } from 'lucide-react'
+import { Ellipsis } from 'lucide-react'
 import { Layer, useLayerStore } from '@/lib/layer-store'
 
 export default function LayerInfo({layer, layerIndex,}: {layer: Layer, layerIndex: number}) {

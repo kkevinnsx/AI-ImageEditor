@@ -4,11 +4,9 @@ import { useImageStore } from "@/lib/image-store"
 import { useLayerStore } from "@/lib/layer-store"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { Button } from "../ui/button"
-import { Crop, Eraser, Image } from "lucide-react"
+import { Crop} from "lucide-react"
 import { Label } from "../ui/label"
-import { Input } from "../ui/input"
 import { useMemo, useState } from "react"
-import { bgRemoval } from "@/server/bg-remove"
 import { AnimatePresence, motion} from 'framer-motion'
 import { genFill } from "@/server/gen-fill"
 import { Slider } from "../ui/slider"
@@ -62,20 +60,21 @@ export default function GenerativeFill(){
     }
 
     const previewStyle = useMemo(() => {
-        if (!activeLayer.width || !activeLayer.height) return {};
-        const newWidth = activeLayer.width + width;
-        const newHeight = activeLayer.height + height;
-        if (newWidth <= 0 || newHeight <= 0) return {};  
-        const scale = Math.min(PREVIEW_SIZE / newWidth, PREVIEW_SIZE / newHeight);
+        if(!activeLayer.width || !activeLayer.height) return {}
+        const newWidth  = activeLayer.width + width
+        const newHeight = activeLayer.height + height
+        const scale = Math.min(PREVIEW_SIZE / newWidth, PREVIEW_SIZE / newHeight)
         
-        return {
+        return{
             width: `${newWidth * scale}px`,
             height: `${newHeight * scale}px`,
             backgroundImage: `url(${activeLayer.url})`,
             backgroundSize: `${activeLayer.width * scale}px ${activeLayer.height * scale}px`,
-        };
-    }, [activeLayer.width, activeLayer.height, width, height]);
-    
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            position: 'relative' as const,
+        }
+    }, [activeLayer, width, height])
 
     const previewOverlayStyle = useMemo(() => {
         if(!activeLayer.width || !activeLayer.height) return{}

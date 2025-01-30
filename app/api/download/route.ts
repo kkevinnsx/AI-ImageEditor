@@ -12,7 +12,6 @@ export async function GET(request: NextRequest){
     const searchParams = request.nextUrl.searchParams
     const publicId = searchParams.get("publicId")
     const quality = searchParams.get("quality")
-    const resource = searchParams.get("resource_type")
     const format = searchParams.get("format")
     const activeUrl = searchParams.get("url")
 
@@ -63,7 +62,7 @@ export async function GET(request: NextRequest){
             url,
             filename: `${publicId}.${quality}.${format}`,
         })
-    } catch (error) {
+    } catch {
         return NextResponse.json(
             { error: "Error generating image URL"},
             { status: 500  }

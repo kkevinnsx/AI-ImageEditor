@@ -3,25 +3,23 @@ import { StoreApi, useStore } from 'zustand'
 import { createStore } from 'zustand/vanilla'
 import { persist } from 'zustand/middleware'
 
-const createZustandContext = <TInitial, TStore extends StoreApi<any>>(
+const createZustandContext = <TInitial, TStore extends StoreApi<State>>(
     getStore: (initial: TInitial) => TStore) => {
-        const Context = React.createContext<StoreApi<State>>(null as any as StoreApi<State>); 
+    const Context = React.createContext<StoreApi<State>>(null as unknown as StoreApi<State>);
 
-        const Provider = (props: {
-            children?: React.ReactNode
-            initialValue: TInitial
-        }) => {
-            const [store] = React.useState(getStore(props.initialValue))
+    const Provider = (props: { children?: React.ReactNode, initialValue: TInitial }) => {
+        const [store] = React.useState(getStore(props.initialValue));
 
-            return <Context.Provider value={store}>{props.children}</Context.Provider>
-        }
+        return <Context.Provider value={store}>{props.children}</Context.Provider>;
+    };
 
-            return {
-                useContext: () => React.useContext(Context),
-                Context,
-                Provider,
-            }        
-    }
+    return {
+        useContext: () => React.useContext(Context),
+        Context,
+        Provider,
+    };
+};
+
 
 export type Layer = {
     publicId?: string

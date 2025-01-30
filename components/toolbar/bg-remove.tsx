@@ -4,10 +4,7 @@ import { useImageStore } from "@/lib/image-store"
 import { useLayerStore } from "@/lib/layer-store"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { Button } from "../ui/button"
-import { Eraser, Image } from "lucide-react"
-import { Label } from "../ui/label"
-import { Input } from "../ui/input"
-import { useState } from "react"
+import { Image } from "lucide-react"
 import { bgRemoval } from "@/server/bg-remove"
 
 export default function BgRemove(){
@@ -22,7 +19,7 @@ export default function BgRemove(){
             <PopoverTrigger disabled={!activeLayer?.url} asChild>
                 <Button variant="outline" className="p-8">
                     <span className="flex gap-1 items-center justify-center flex-col text-xs font-medium">
-                        BG Removal <Image size={20} />
+                        BG Removal <Image aria-label='description of image' size={20} />
                     </span>
                 </Button>
             </PopoverTrigger>

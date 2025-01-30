@@ -3,7 +3,7 @@
 import { useLayerStore } from "@/lib/layer-store"
 import { Button } from "../ui/button"
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "../ui/dialog"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
+import { Card, CardContent, CardDescription, CardTitle } from "../ui/card"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { Download } from "lucide-react"
