@@ -8,6 +8,7 @@ import UploadForm from "./upload/upload-form"
 import { useLayerStore } from "@/lib/layer-store"
 import ImageTools from "./toolbar/image-toolbar"
 import Loading from "./loading-screen"
+import VideoTools from "./toolbar/video-toolbar"
 
 export default function Editor () {
     const activeLayer = useLayerStore((state) => state.activeLayer)
@@ -18,7 +19,8 @@ export default function Editor () {
                     <ModeToggle />
                 </div>
                 <div className="flex flex-col gap-4">
-                    {activeLayer.resourceType === 'image' ? <ImageTools /> : null}
+                    {activeLayer.resourceType === "image" ? <ImageTools /> : null}
+                    {activeLayer.resourceType === "video" ? <VideoTools /> : null}
                 </div>
             </div>
             <Loading />
